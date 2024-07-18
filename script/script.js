@@ -3,12 +3,11 @@ const weightInput = document.getElementById("weight");
 const heightInput = document.getElementById("height");
 const resultDisplay = document.getElementById("result");
 const numberDisplay = document.getElementById("number");
-const rightPanel = document.getElementById("right");
 
 if (!weightInput || !heightInput) {
     console.error("Missing one or more required DOM elements.");
     throw new Error("Missing required DOM elements");
-}
+};
 
 function calculate() {
     const weight = Number(weightInput.value);
@@ -19,19 +18,19 @@ function calculate() {
 
         numberDisplay.textContent = IMCFormatted;
 
-        let imcResult ;
+        let imcResult;
 
         switch (true) {
-            case (result < 18.5):
+            case (IMCResult < 18.5):
                 imcResult = "Abaixo do peso";
                 break;
-            case (result < 25):
+            case (IMCResult < 25):
                 imcResult = "Normal";
                 break;
-            case (result < 30):
+            case (IMCResult < 30):
                 imcResult = "Sobrepeso";
                 break;
-            case (result < 40):
+            case (IMCResult < 40):
                 imcResult = "Obesidade";
                 break;
             default:
@@ -44,4 +43,10 @@ function calculate() {
         numberDisplay.textContent = "--.-";
         resultDisplay.textContent = "IMC";
     }
-}
+};
+
+function logKey(event) {
+    if (denyKeys.has(event.key)) {
+        event.preventDefault();
+    }
+};

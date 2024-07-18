@@ -18,11 +18,11 @@
         <div class="content">
             <div class="left">
                 <div class="desc">Peso</div>
-                <input id="weight" type="number" oninput="calculate()" ><span class="meter">kg</span><br>
-                <div class="desc" style="margin-top: 8px">Altura</div>
-                <input id="height" type="number" oninput="calculate()" ><span class="meter">cm</span>
+                <input id="weight" type="number" oninput="calculate()" onkeydown="logKey(event)"><span class="meter">kg</span><br>
+                <div class="desc">Altura</div>
+                <input id="height" type="number" oninput="calculate()" onkeydown="logKey(event)"><span class="meter">cm</span>
             </div>
-            <div id="right" class="right">
+            <div class="right">
                 <div id="number" class="number">--.-</div>
                 <div id="result" class="result">IMC</div>
             </div>
