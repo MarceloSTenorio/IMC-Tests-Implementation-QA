@@ -7,7 +7,7 @@ const numberDisplay = document.getElementById("number");
 if (!weightInput || !heightInput) {
     console.error("Missing one or more required DOM elements.");
     throw new Error("Missing required DOM elements");
-};
+}
 
 function calculate() {
     const weight = Number(weightInput.value);
@@ -43,10 +43,17 @@ function calculate() {
         numberDisplay.textContent = "--.-";
         resultDisplay.textContent = "IMC";
     }
-};
+}
 
 function logKey(event) {
     if (denyKeys.has(event.key)) {
         event.preventDefault();
     }
-};
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    weightInput.addEventListener("input", calculate);
+    weightInput.addEventListener("keydown", logKey);
+    heightInput.addEventListener("input", calculate);
+    heightInput.addEventListener("keydown", logKey);
+});
