@@ -19,7 +19,8 @@ function calculate() {
 
         numberDisplay.textContent = IMCFormatted;
 
-        let imcResult = '';
+        let imcResult ;
+
         switch (true) {
             case (result < 18.5):
                 imcResult = "Abaixo do peso";
@@ -42,11 +43,5 @@ function calculate() {
     } else {
         numberDisplay.textContent = "--.-";
         resultDisplay.textContent = "IMC";
-    }
-}
-
-function logKey(event) {
-    if (denyKeys.has(event.key)) {
-        event.preventDefault();
     }
 }
