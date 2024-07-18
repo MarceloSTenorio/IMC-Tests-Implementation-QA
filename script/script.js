@@ -1,4 +1,4 @@
-const denyKeys = new Set(["-", "+", "e"]);
+const ignoreKeys = new Set(["-", "+", "e"]);
 const weightInput = document.getElementById("weight");
 const heightInput = document.getElementById("height");
 const resultDisplay = document.getElementById("result");
@@ -46,7 +46,7 @@ function calculate() {
 }
 
 function logKey(event) {
-    if (denyKeys.has(event.key)) {
+    if (ignoreKeys.has(event.key)) {
         event.preventDefault();
     }
 }
