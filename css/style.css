@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-/* font-family: 'Roboto', sans-serif; */
 
 *{
 	font-family: 'Roboto', sans-serif;
@@ -59,7 +58,6 @@ input{
 	display: inline-block;
 	width: 160px;
 	text-align: center;
-	opacity: 0.2;
 }
 
 .header{

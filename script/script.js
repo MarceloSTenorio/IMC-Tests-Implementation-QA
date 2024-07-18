@@ -1,56 +1,52 @@
+const denyKeys = new Set(["-", "+", "e"]);
+const weightInput = document.getElementById("weight");
+const heightInput = document.getElementById("height");
+const resultDisplay = document.getElementById("result");
+const numberDisplay = document.getElementById("number");
+const rightPanel = document.getElementById("right");
 
-var deny=["-", "+", "e"];
-
-function calculate(){
-
-	var weight=Number(winput.value), height=Number(hinput.value)/100, result;
-
-	if(weight>0 && height>0){
-		result=weight/(height*height);
-		result=Math.round(result*100)/100;
-
-		number.innerHTML=result;
-		if(result<18.5) imc.innerHTML="Abaixo do peso";
-		else if(result<25) imc.innerHTML="Normal";
-		else if(result<30) imc.innerHTML="Sobrepeso";
-		else if(result<40) imc.innerHTML="Obesidade";
-		else imc.innerHTML="Obesidade grave";
-
-		right.style.opacity=1.0;
-	}
-	else{
-		right.style.opacity=0.2;
-		number.innerHTML="--.-";
-		imc.innerHTML="IMC";
-	}
-
+if (!weightInput || !heightInput) {
+    console.error("Missing one or more required DOM elements.");
+    throw new Error("Missing required DOM elements");
 }
 
-function logKey(event){
+function calculate() {
+    const weight = Number(weightInput.value);
+    const height = Number(heightInput.value) / 100;
+    if (weight > 0 && height > 0) {
+        let IMCResult = weight / (height * height);
+        let IMCFormatted = IMCResult.toFixed(2);
 
-	var x=event.target;
-	var i;
-	for(i=0;i<deny.length;i++){
-		if(event.key==deny[i]){
-			event.preventDefault();
-			return;
-		}
-	}
+        numberDisplay.textContent = IMCFormatted;
 
+        let imcResult = '';
+        switch (true) {
+            case (result < 18.5):
+                imcResult = "Abaixo do peso";
+                break;
+            case (result < 25):
+                imcResult = "Normal";
+                break;
+            case (result < 30):
+                imcResult = "Sobrepeso";
+                break;
+            case (result < 40):
+                imcResult = "Obesidade";
+                break;
+            default:
+                imcResult = "Obesidade grave";
+                break;
+        }
+
+        resultDisplay.textContent = imcResult;
+    } else {
+        numberDisplay.textContent = "--.-";
+        resultDisplay.textContent = "IMC";
+    }
 }
 
-function start(){
-
-	winput=document.getElementById("weight"), hinput=document.getElementById("height"), right=document.getElementById("right"),
-	number=document.getElementById("number"), imc=document.getElementById("result");
-
-	winput.addEventListener("keydown", logKey);
-	hinput.addEventListener("keydown", logKey);
-
-	winput.addEventListener("keyup", calculate);
-	hinput.addEventListener("keyup", calculate);
-
+function logKey(event) {
+    if (denyKeys.has(event.key)) {
+        event.preventDefault();
+    }
 }
-
-
-
